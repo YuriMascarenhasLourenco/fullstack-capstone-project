@@ -13,11 +13,11 @@ router.get('/', async (req, res, next) => {
         // Initialize the query object
         let query = {};
 
-        // Add the name filter to the query if the name parameter is not empty
-        if (req.query.name>req.query.name && req.query.name.trim() !== '') {
+        // Add the name filter to the query if the name parameter is present and not empty
+        if (req.query.name && req.query.name.trim() !== '') {
             query.name = { $regex: req.query.name, $options: "i" }; 
             // Using regex for partial match, case-insensitive
-         }
+        }
 
         // Task 3: Add other filters to the query
         if (req.query.category) {
@@ -27,11 +27,11 @@ router.get('/', async (req, res, next) => {
             query.condition = req.query.condition;
         }
         if (req.query.age_years) {
-            query.age_years = { $lte: parseInt(req.query.age_years) };
+            query.age_years = { $lte: parseInt(req.query.age_years, 10) };
         }
 
-        // Task 4: Fetch filtered gifts using the find(query) method. Make sure to use await and store the result in the `gifts` constant
-       await collection.find(query).toArray()
+        // Task 4: Fetch filtered gifts using the find(query) method. Store the result in the `gifts` constant
+        const gifts = await collection.find(query).toArray();
 
         res.json(gifts);
     } catch (e) {
