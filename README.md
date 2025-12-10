@@ -49,16 +49,16 @@ The application allows managing gifts with full CRUD (Create, Read, Update, Dele
 ## Useful Commands
 
 - Check deployments:
-
-  ```bash
- kubectl get deployments
+- 
+```bash
+   kubectl get deployments
  
-   ```bash
-Delete an existing deployment:
-kubectl delete deployment <deployment-name>
+```bash
+  Delete an existing deployment:
+  kubectl delete deployment <deployment-name>
 
 Commit and push to GitHub:
-  ```bash
-git add .
-git commit -m "Your commit message"
-git push origin main
+```bash
+  git add .
+  git commit -m "Your commit message"
+  git push origin main
